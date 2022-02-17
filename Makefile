@@ -7,7 +7,7 @@ ARCH=amd64
 build:
 	docker build -t ${REGISTRY}:${VERSION_TAG}-${ARCH} .
 	docker run -it --rm --hostname=php-fpm --read-only ${REGISTRY}:${VERSION_TAG}-${ARCH} nginx -t
-	docker build --build-arg VERSION_TAG=${VERSION_TAG} -t ${REGISTRY}:${VERSION_TAG}-dev-${ARCH} dev
+	docker build --build-arg VERSION_TAG=${VERSION_TAG} --build-arg ARCH=${ARCH} -t ${REGISTRY}:${VERSION_TAG}-dev-${ARCH} dev
 	docker run -it --rm --hostname=php-fpm --read-only ${REGISTRY}:${VERSION_TAG}-dev-${ARCH} nginx -t
 
 push:
