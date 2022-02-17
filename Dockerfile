@@ -1,6 +1,8 @@
-FROM skpr/base:1.x
+ARG ALPINE_VERSION=3.14
+FROM alpine:${ALPINE_VERSION}
 
-RUN apk --update --no-cache add nginx
+RUN adduser -D -u 1000 skpr
+RUN apk --update --no-cache add util-linux ca-certificates nginx
 
 ADD nginx.conf /etc/nginx/nginx.conf
 
