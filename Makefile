@@ -8,7 +8,7 @@ build:
 	docker build -t ${REGISTRY}:${VERSION_TAG}-${ARCH} .
 	docker run -it --rm --hostname=php-fpm --read-only ${REGISTRY}:${VERSION_TAG}-${ARCH} nginx -t
 	docker build --build-arg VERSION_TAG=${VERSION_TAG} --build-arg ARCH=${ARCH} -t ${REGISTRY}:dev-${VERSION_TAG}-${ARCH} dev
-	docker run -it --rm --hostname=php-fpm --read-only ${REGISTRY}:${VERSION_TAG}-dev-${ARCH} nginx -t
+	docker run -it --rm --hostname=php-fpm --read-only ${REGISTRY}:dev-${VERSION_TAG}-${ARCH} nginx -t
 
 push:
 	docker push ${REGISTRY}:${VERSION_TAG}-${ARCH}
