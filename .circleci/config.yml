@@ -57,7 +57,6 @@ jobs:
         type: string
     executor: << parameters.executor >>
     steps:
-      - setup_remote_docker
       - checkout
       - run:
           name: Build, Test and Release
