@@ -1,21 +1,9 @@
-ARG ALPINE_VERSION=3.14
-FROM alpine:${ALPINE_VERSION}
+FROM alpine:3.15
 
 RUN adduser -D -u 1000 skpr
 RUN apk --update --no-cache add util-linux ca-certificates nginx
 
-ADD nginx.conf /etc/nginx/nginx.conf
-
-ADD default.conf /etc/nginx/conf.d/default.conf
-ADD status.conf /etc/nginx/conf.d/status.conf
-ADD security.conf /etc/nginx/conf.d/security.conf
-RUN touch /etc/nginx/conf.d/http.conf
-
-# Configuration file used for overriding default.conf server configuration.
-RUN mkdir -p /etc/nginx/overrides.d
-
-# Configuration file used for managing redirects.
-RUN touch /etc/nginx/redirects.conf
+COPY --chown=skpr:skpr etc /etc
 
 # We need to create and chown these directory for
 # readonly and non-root execution.
