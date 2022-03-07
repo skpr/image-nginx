@@ -49,11 +49,11 @@ manifest:
 	docker manifest create ${IMAGE} --amend ${IMAGE}-arm64 --amend ${IMAGE}-amd64
 	docker manifest push ${IMAGE}
 
-	$(eval IMAGE=${REGISTRY_PHP_FPM}:dev-${VERSION_TAG})
+	$(eval IMAGE=${REGISTRY_DRUPAL}:${VERSION_TAG})
 	docker manifest create ${IMAGE} --amend ${IMAGE}-arm64 --amend ${IMAGE}-amd64
 	docker manifest push ${IMAGE}
 
-	$(eval IMAGE=${REGISTRY_DRUPAL}:dev-${VERSION_TAG})
+	$(eval IMAGE=${REGISTRY_PHP_FPM}:dev-${VERSION_TAG})
 	docker manifest create ${IMAGE} --amend ${IMAGE}-arm64 --amend ${IMAGE}-amd64
 	docker manifest push ${IMAGE}
 
