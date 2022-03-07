@@ -34,14 +34,14 @@ build:
 	docker run -it --rm --hostname=php-fpm --read-only ${IMAGE} nginx -t
 
 push:
-	docker push ${REGISTRY}:${VERSION_TAG}-${ARCH}
+	docker push ${REGISTRY_BASE}:${VERSION_TAG}-${ARCH}
 	docker push ${REGISTRY_PHP_FPM}:${VERSION_TAG}-${ARCH}
 	docker push ${REGISTRY_PHP_FPM}:dev-${VERSION_TAG}-${ARCH}
 	docker push ${REGISTRY_DRUPAL}:${VERSION_TAG}-${ARCH}
 	docker push ${REGISTRY_DRUPAL}:dev-${VERSION_TAG}-${ARCH}
 
 manifest:
-	$(eval IMAGE=${REGISTRY}:${VERSION_TAG})
+	$(eval IMAGE=${REGISTRY_BASE}:${VERSION_TAG})
 	docker manifest create ${IMAGE} --amend ${IMAGE}-arm64 --amend ${IMAGE}-amd64
 	docker manifest push ${IMAGE}
 
