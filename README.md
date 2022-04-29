@@ -1,2 +1,77 @@
 # Skpr Nginx Images
 
+
+
+## Configuration Directory Structure.
+
+Nginx config is broken down into sub-directories to allow custom additions and overrides.
+
+The base directory structure is as follows:
+```
+etc/
+└── nginx
+├── conf.d
+│   ├── header
+│   │   ├── feature.conf
+│   │   ├── hsts.conf
+│   │   ├── referrer.conf
+│   │   └── xss.conf
+│   └── location
+│       ├── 00-block.conf
+│       ├── 10-favicon.conf
+│       ├── 10-readyz.conf
+│       ├── 10-robots.conf
+│       ├── 10-styleguide.conf
+│       ├── 10-well_known.conf
+│       └── 50-assets.conf
+├── default.conf
+├── http.conf
+├── nginx.conf
+├── redirects.conf
+└── status.conf
+```
+
+The PHP-FPM configuration is layered on top of this as follows:
+
+```
+etc/
+└── nginx
+    └── conf.d
+        ├── fastcgi
+        │   ├── errors.conf
+        │   ├── params.conf
+        │   ├── pass.conf
+        │   └── timeout.conf
+        └── location
+            ├── 20-fastcgi.conf
+            └── 20-php.conf
+```
+
+And finally the Drupal-specific configuration is layered on top of this:
+
+```
+etc/
+└── nginx
+    └── conf.d
+        └── location
+            └── 20-drupal.conf
+```
+
+## Adding Custom Configuration
+
+For example, if you wanted to add your own custom header configuration, you can simply copy
+it to the correct location:
+
+```
+conf.d/
+└── header
+    └── custom.conf
+```
+
+and in your Dockerfile:
+```
+FROM skpr/nginx-drupal:v2-latest
+COPY conf.d /etc/nginx/conf.d
+```
+
+This would add any custom configuration in your `conf.d/` to the correct location in the Nginx image.
