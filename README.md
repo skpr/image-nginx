@@ -8,53 +8,42 @@ Nginx config is broken down into sub-directories to allow custom additions and o
 
 The base directory structure is as follows:
 ```
-etc/
-└── nginx
-├── conf.d
-│   ├── header
-│   │   ├── feature.conf
-│   │   ├── hsts.conf
-│   │   ├── referrer.conf
-│   │   └── xss.conf
-│   └── location
-│       ├── 00-block.conf
-│       ├── 10-favicon.conf
-│       ├── 10-readyz.conf
-│       ├── 10-robots.conf
-│       ├── 10-styleguide.conf
-│       ├── 10-well_known.conf
-│       └── 50-assets.conf
-├── default.conf
-├── http.conf
-├── nginx.conf
-├── redirects.conf
-└── status.conf
+conf.d/
+├── header
+│   ├── feature.conf
+│   ├── hsts.conf
+│   ├── referrer.conf
+│   └── xss.conf
+└── location
+    ├── 00-block.conf
+    ├── 10-favicon.conf
+    ├── 10-readyz.conf
+    ├── 10-robots.conf
+    ├── 10-styleguide.conf
+    ├── 10-well_known.conf
+    └── 50-assets.conf
 ```
 
 The PHP-FPM configuration is layered on top of this as follows:
 
 ```
-etc/
-└── nginx
-    └── conf.d
-        ├── fastcgi
-        │   ├── errors.conf
-        │   ├── params.conf
-        │   ├── pass.conf
-        │   └── timeout.conf
-        └── location
-            ├── 20-fastcgi.conf
-            └── 20-php.conf
+conf.d/
+├── fastcgi
+│   ├── errors.conf
+│   ├── params.conf
+│   ├── pass.conf
+│   └── timeout.conf
+└── location
+    ├── 20-fastcgi.conf
+    └── 20-php.conf
 ```
 
 And finally the Drupal-specific configuration is layered on top of this:
 
 ```
-etc/
-└── nginx
-    └── conf.d
-        └── location
-            └── 20-drupal.conf
+conf.d/
+└── location
+    └── 20-drupal.conf
 ```
 
 ## Adding Custom Configuration
