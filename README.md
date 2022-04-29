@@ -48,8 +48,8 @@ conf.d/
 
 ## Adding Custom Configuration
 
-For example, if you wanted to add your own custom header configuration, you can simply copy
-it to the correct location:
+For example, if you wanted to add your own custom header configuration, create it using the standard
+directory structure.
 
 ```
 conf.d/
@@ -57,10 +57,11 @@ conf.d/
     └── custom.conf
 ```
 
-and in your Dockerfile:
+and then copy it over in your Dockerfile:
+
 ```
 FROM skpr/nginx-drupal:v2-latest
 COPY conf.d /etc/nginx/conf.d
 ```
 
-This would add any custom configuration in your `conf.d/` to the correct location in the Nginx image.
+This adds any custom configuration in `conf.d/` to the correct location in the Nginx image.
