@@ -10,17 +10,18 @@ The base directory structure is as follows:
 ```
 conf.d/
 ├── header
-│   ├── feature.conf
-│   ├── hsts.conf
-│   ├── referrer.conf
-│   └── xss.conf
+│   ├── feature.conf
+│   ├── hsts.conf
+│   ├── referrer.conf
+│   ├── server.conf
+│   └── xss.conf
 └── location
-    ├── 00-block.conf
+    ├── 00-well_known.conf
+    ├── 10-block.conf
     ├── 10-favicon.conf
     ├── 10-readyz.conf
     ├── 10-robots.conf
     ├── 10-styleguide.conf
-    ├── 10-well_known.conf
     └── 50-assets.conf
 ```
 
@@ -29,10 +30,10 @@ The PHP-FPM configuration is layered on top of this as follows:
 ```
 conf.d/
 ├── fastcgi
-│   ├── errors.conf
-│   ├── params.conf
-│   ├── pass.conf
-│   └── timeout.conf
+│   ├── errors.conf
+│   ├── params.conf
+│   ├── pass.conf
+│   └── timeout.conf
 └── location
     ├── 20-fastcgi.conf
     └── 20-php.conf
@@ -42,6 +43,10 @@ And finally the Drupal-specific configuration is layered on top of this:
 
 ```
 conf.d/
+├── header
+│   ├── x_drupal_cache.conf
+│   ├── x_drupal_dynamic_cache.conf
+│   └── x_generator.conf
 └── location
     └── 20-drupal.conf
 ```
