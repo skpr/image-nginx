@@ -1,7 +1,7 @@
 FROM alpine:3.15
 
 RUN adduser -D -u 1000 skpr
-RUN apk --update --no-cache add util-linux ca-certificates nginx
+RUN apk --update --no-cache add util-linux ca-certificates nginx nginx-mod-http-headers-more
 
 COPY --chown=skpr:skpr etc /etc
 
