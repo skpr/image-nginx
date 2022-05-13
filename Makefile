@@ -31,6 +31,7 @@ build:
 	# Building Drupal (Dev)
 	$(eval IMAGE=${REGISTRY_DRUPAL}:dev-${VERSION_TAG}-${ARCH})
 	docker build --build-arg FROM_IMAGE=${REGISTRY_DRUPAL}:${VERSION_TAG}-${ARCH} -t ${IMAGE} php-fpm/dev
+	docker build --build-arg FROM_IMAGE=${IMAGE} -t ${IMAGE} drupal/dev
 	docker run -it --rm --hostname=php-fpm --read-only ${IMAGE} nginx -t
 
 push:
