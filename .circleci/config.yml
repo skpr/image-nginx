@@ -139,7 +139,7 @@ jobs:
             make build ARCH=<< parameters.executor >> VERSION_TAG=${SHA1_VERSION}
       - when:
           condition:
-            equal: ["main", << pipeline.git.branch >> ]
+            equal: [ true, << parameters.push >> ]
           steps:
             - run:
                 name: "Push image"
