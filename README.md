@@ -12,9 +12,11 @@ This image suite provides 2 streams for images:
 ## Images
 
 ```
-docker.io/skpr/node:14-v2-latest
-docker.io/skpr/node:16-v2-latest
-docker.io/skpr/node:18-v2-latest
+docker.io/skpr/nginx:v2-edge
+docker.io/skpr/nginx-php-fpm:v2-edge
+docker.io/skpr/nginx-php-fpm:dev-v2-edge
+docker.io/skpr/nginx-drupal:v2-edge
+docker.io/skpr/nginx-drupal:dev-v2-edge
 ```
 
 ## Configuration Directory Structure.
