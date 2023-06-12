@@ -1,6 +1,21 @@
 # Skpr Nginx Images
 
+Images for applications which require Nginx (Drupal, PHP etc).
 
+## Streams
+
+This image suite provides 2 streams for images:
+
+* `latest` - A stable upstream.
+* `edge` - Recently merged changes which will be merged into `latest` as part of a release.
+
+## Images
+
+```
+docker.io/skpr/node:14-v2-latest
+docker.io/skpr/node:16-v2-latest
+docker.io/skpr/node:18-v2-latest
+```
 
 ## Configuration Directory Structure.
 

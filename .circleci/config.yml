@@ -135,7 +135,7 @@ jobs:
           name: Build, Test and Release
           command: |
             SHA1_VERSION="v2-$(git rev-parse --short HEAD)"
-            make build ARCH=<< parameters.executor >> VERSION_TAG=v2-latest
+            make build ARCH=<< parameters.executor >> VERSION_TAG=v2-<< parameters.stream >>
             make build ARCH=<< parameters.executor >> VERSION_TAG=${SHA1_VERSION}
       - when:
           condition:
