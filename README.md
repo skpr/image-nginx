@@ -11,6 +11,18 @@ This image suite provides 2 streams for images:
 
 ## Images
 
+**Latest**
+
+```
+docker.io/skpr/nginx:v2-latest
+docker.io/skpr/nginx-php-fpm:v2-latest
+docker.io/skpr/nginx-php-fpm:dev-v2-latest
+docker.io/skpr/nginx-drupal:v2-latest
+docker.io/skpr/nginx-drupal:dev-v2-latest
+```
+
+**Edge**
+
 ```
 docker.io/skpr/nginx:v2-edge
 docker.io/skpr/nginx-php-fpm:v2-edge
