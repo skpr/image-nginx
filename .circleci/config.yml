@@ -24,6 +24,9 @@ workflows:
           matrix:
             parameters:
               executor: *platforms
+          filters:
+            branches:
+              ignore: [ main, releases ]
 
   build_edge:
     jobs:
