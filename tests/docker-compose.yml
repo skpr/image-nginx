@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+
+  nginx:
+    image: ${IMAGE}
+    ports:
+      - 8080:8080
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./index.php:/data/app/index.php
+#      - ./index.php:/data/app/tag/index.php
+
+  php-fpm:
+    image: docker.io/skpr/php-fpm:8.2-dev-v2-latest
+    network_mode: service:nginx
+    volumes:
+      - ./index.php:/data/app/index.php
+#      - ./index.php:/data/app/tag/index.php
+
+  goss:
+    image: aelsabbahy/goss
+    network_mode: service:nginx
+    depends_on: ["php-fpm"]
+    command: ["goss","-g","/data/goss.yml","validate"]
+    volumes:
+      - ./goss.yaml:/data/goss.yml
