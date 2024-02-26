@@ -38,7 +38,6 @@ test:
 	# Start a stack for testing.
 	IMAGE=${IMAGE} docker-compose -f tests/docker-compose.yml up -d nginx php-fpm
 	# Run tests.
-	dockerize -wait tcp://127.0.0.1:8080 -timeout 15s
 	IMAGE=${IMAGE} docker-compose -f tests/docker-compose.yml up goss
 	# Stop testing stack.
 	IMAGE=${IMAGE} docker-compose -f tests/docker-compose.yml down
