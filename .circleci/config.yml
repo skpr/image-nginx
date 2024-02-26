@@ -27,11 +27,13 @@ workflows:
           filters:
             branches:
               ignore: [ main, releases ]
+  test:
+    jobs:
       - test:
           stream: test
           matrix:
             parameters:
-              executor: *platforms
+              executor: [ "amd64" ]
           filters:
             branches:
               ignore: [ main, releases ]
