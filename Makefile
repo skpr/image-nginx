@@ -38,6 +38,7 @@ test:
 	# Start a stack for testing.
 	IMAGE=${IMAGE} docker-compose -f tests/docker-compose.yml up -d nginx php-fpm
 	# Run tests.
+	sleep 5
 	IMAGE=${IMAGE} docker-compose -f tests/docker-compose.yml up goss
 	# Stop testing stack.
 	IMAGE=${IMAGE} docker-compose -f tests/docker-compose.yml down
