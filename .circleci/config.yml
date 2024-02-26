@@ -27,6 +27,14 @@ workflows:
           filters:
             branches:
               ignore: [ main, releases ]
+      - test:
+          stream: test
+          matrix:
+            parameters:
+              executor: *platforms
+          filters:
+            branches:
+              ignore: [ main, releases ]
 
   build_edge:
     jobs:
@@ -148,6 +156,18 @@ jobs:
                   SHA1_VERSION="v2-$(git rev-parse --short HEAD)"
                   make push ARCH=<< parameters.executor >> VERSION_TAG=v2-<< parameters.stream >>
                   make push ARCH=<< parameters.executor >> VERSION_TAG=${SHA1_VERSION}
+  test:
+    parameters:
+      executor:
+        type: string
+      stream:
+        type: string
+    executor: << parameters.executor >>
+    steps:
+      - checkout
+      - run:
+          name: Test
+          command: make test
 
   manifest:
     parameters:
