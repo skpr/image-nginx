@@ -16,11 +16,3 @@ services:
     network_mode: service:nginx
     volumes:
       - ./index.php:/data/app/index.php
-
-  goss:
-    image: aelsabbahy/goss
-    network_mode: service:nginx
-    depends_on: ["php-fpm"]
-    command: ["goss","-g","/data/goss.yml","validate"]
-    volumes:
-      - ./goss.yaml:/data/goss.yml

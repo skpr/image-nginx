@@ -36,9 +36,9 @@ build:
 test:
 	$(eval IMAGE=${REGISTRY_DRUPAL}:dev-${VERSION_TAG}-${ARCH})
 	# Start a stack for testing.
-	IMAGE=${IMAGE} docker-compose -f tests/docker-compose.yml up -d nginx php-fpm
+	IMAGE=${IMAGE} docker-compose -f tests/docker-compose.yml up -d
 	# Run tests.
-	IMAGE=${IMAGE} docker-compose -f tests/docker-compose.yml up goss
+	docker run --rm --network=host --volume ./tests/goss.yaml:/data/goss.yml aelsabbahy/goss goss -g /data/goss.yml validate
 	# Stop testing stack.
 	IMAGE=${IMAGE} docker-compose -f tests/docker-compose.yml down
 
