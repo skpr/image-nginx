@@ -38,7 +38,7 @@ test:
 	# Start a stack for testing.
 	IMAGE=${IMAGE} docker-compose -f tests/docker-compose.yml up -d
 	# Run tests.
-	docker run --rm --network=host --volume ./tests/goss.yaml:/data/goss.yml aelsabbahy/goss goss -g /data/goss.yml validate
+	docker run --rm --network=host --volume ${PWD}/tests/goss.yaml:/data/goss.yml aelsabbahy/goss goss -g /data/goss.yml validate
 	# Stop testing stack.
 	IMAGE=${IMAGE} docker-compose -f tests/docker-compose.yml down
 
