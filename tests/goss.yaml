@@ -19,3 +19,10 @@ http:
     no-follow-redirects: false
     timeout: 5000
     body: []
+
+  http://127.0.0.1:8080/data.log:
+    status: 404
+    allow-insecure: true
+    no-follow-redirects: false
+    timeout: 5000
+    body: []
