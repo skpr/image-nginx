@@ -1,0 +1,25 @@
+name: Validate Conventional Commits
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validate_commits:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Node.js and npm
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20.12.2'
+
+      - name: Install conventional-changelog-lint
+        run: npm install -g conventional-changelog-lint
+
+      - name: Validate commits
+        run: npx conventional-changelog-lint --from=main --to=$GITHUB_SHA
