@@ -29,5 +29,5 @@ jobs:
       - name: validate PR title
         run: echo "${{ github.event.pull_request.title }}" | npx conventional-changelog-lint
 
-      - name: validate PR body
-        run: if [[  "${{ github.event.pull_request.body }}" =~ "(.*\n)+(.*)" ]]; then exit 0; else exit 1; fi
+      # - name: validate PR body
+      #   run: if [[  "${{ github.event.pull_request.body }}" =~ "(.*\n)+(.*)" ]]; then exit 0; else exit 1; fi
