@@ -11,7 +11,9 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Install Node.js and npm
         uses: actions/setup-node@v2
@@ -19,7 +21,7 @@ jobs:
           node-version: '20.12.2'
 
       - name: Install conventional-changelog-lint
-        run: npm install -g conventional-changelog-lint
+        run: npm install --save-dev conventional-changelog-lint
 
       - name: Validate commits
-        run: npx conventional-changelog-lint --from=main --to=${GITHUB_REF}
+        run: npx conventional-changelog-lint --from=origin/main --to=origin/${{ github.head_ref }}
