@@ -1,0 +1,18 @@
+version: "3.0"
+
+services:
+
+  nginx:
+    image: ${IMAGE}
+    ports:
+      - 8080:8080
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./index.php:/data/app/index.PHP
+
+  php-fpm:
+    image: docker.io/skpr/php-fpm:8.2-dev-v2-latest
+    network_mode: service:nginx
+    volumes:
+      - ./index.php:/data/app/index.php
