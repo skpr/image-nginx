@@ -1,0 +1,28 @@
+http:
+
+  http://127.0.0.1:8080/index.PHP:
+    status: 403
+    allow-insecure: true
+    no-follow-redirects: false
+    timeout: 5000
+
+  http://127.0.0.1:8080/tag:
+    status: 200
+    allow-insecure: true
+    no-follow-redirects: false
+    timeout: 5000
+    body: [ "Hello world!" ]
+
+  http://127.0.0.1:8080/Tag:
+    status: 404
+    allow-insecure: true
+    no-follow-redirects: false
+    timeout: 5000
+    body: []
+
+  http://127.0.0.1:8080/data.log:
+    status: 404
+    allow-insecure: true
+    no-follow-redirects: false
+    timeout: 5000
+    body: []
