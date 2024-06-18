@@ -57,6 +57,25 @@ workflows:
             branches:
               only: [ main ]
 
+  build_stable:
+    jobs:
+      - build:
+          stream: stable
+          context: docker-publishing
+          matrix:
+            parameters:
+              executor: *platforms
+          filters:
+            branches:
+              only: [ releases ]
+      - manifest:
+          stream: stable
+          context: docker-publishing
+          requires: [ build ]
+          filters:
+            branches:
+              only: [ releases ]
+
   build_latest:
     jobs:
       - build:
@@ -101,6 +120,32 @@ workflows:
           filters:
             branches:
               only: [ main ]
+
+  nightly_stable:
+    jobs:
+      - build:
+          stream: stable
+          context: docker-publishing
+          matrix:
+            parameters:
+              executor: *platforms
+          filters:
+            branches:
+              only: [ releases ]
+      - manifest:
+          stream: stable
+          context: docker-publishing
+          requires: [ build ]
+          filters:
+            branches:
+              only: [ releases ]
+    triggers:
+      - schedule:
+          # Scheduled build for 2am AEST nightly.
+          cron: "0 15 * * *"
+          filters:
+            branches:
+              only: [ releases ]
 
   nightly_latest:
     jobs:
