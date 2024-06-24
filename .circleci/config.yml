@@ -27,16 +27,6 @@ workflows:
           filters:
             branches:
               ignore: [ main, releases ]
-  test:
-    jobs:
-      - test:
-          stream: test
-          matrix:
-            parameters:
-              executor: [ "amd64" ]
-          filters:
-            branches:
-              ignore: [ main, releases ]
 
   build_edge:
     jobs:
@@ -187,37 +177,22 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Build, Test and Release
+          name: Build and Test
           command: |
             SHA1_VERSION="v2-$(git rev-parse --short HEAD)"
-            make build ARCH=<< parameters.executor >> VERSION_TAG=v2-<< parameters.stream >>
-            make build ARCH=<< parameters.executor >> VERSION_TAG=${SHA1_VERSION}
+            make build test ARCH=<< parameters.executor >> VERSION_TAG=v2-<< parameters.stream >>
+            make build test ARCH=<< parameters.executor >> VERSION_TAG=${SHA1_VERSION}
       - when:
           condition:
             equal: [ true, << parameters.push >> ]
           steps:
             - run:
-                name: "Push image"
+                name: Release
                 command: |
                   echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
                   SHA1_VERSION="v2-$(git rev-parse --short HEAD)"
                   make push ARCH=<< parameters.executor >> VERSION_TAG=v2-<< parameters.stream >>
                   make push ARCH=<< parameters.executor >> VERSION_TAG=${SHA1_VERSION}
-  test:
-    parameters:
-      executor:
-        type: string
-      stream:
-        type: string
-    executor: << parameters.executor >>
-    steps:
-      - checkout
-      - run:
-          name: Build
-          command: make build
-      - run:
-          name: Test
-          command: make test
 
   manifest:
     parameters:
