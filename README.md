@@ -5,6 +5,7 @@ Images for applications which require Nginx (Drupal, PHP etc).
 ## Documentation
 
 * [Static Status Codes](/docs/static_status_codes.md)
+* [robots.txt](/docs/robots.md)
 
 ## Streams
 
