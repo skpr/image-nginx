@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-// Test which will be executed by this function.
+// Test which will be executed by this script.
 type Test func() error
 
 func main() {
