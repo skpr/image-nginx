@@ -13,6 +13,9 @@ func main() {
 	var errs []error
 
 	tests := []Test{
+		// Tests for header: X-Robots-Tag.
+		noResponseHeader("http://127.0.0.1:8080", "X-Robots-Tag"),
+		hasResponseHeader("http://127.0.0.1:8080/admin/people", "X-Robots-Tag"),
 		// Blocking rules.
 		hasStatusCode("http://127.0.0.1:8080/index.PHP", 403),
 		hasStatusCode("http://127.0.0.1:8080/tag", 200),
@@ -38,6 +41,38 @@ func main() {
 		}
 
 		os.Exit(1)
+	}
+}
+
+// Check if a url has a specified header.
+func hasResponseHeader(url, header string) Test {
+	return func() error {
+		resp, err := http.Get(url)
+		if err != nil {
+			return fmt.Errorf("failed to get host: %w", err)
+		}
+
+		if _, ok := resp.Header[header]; !ok {
+			return fmt.Errorf("header %s does not exist for page %s", url, header)
+		}
+
+		return nil
+	}
+}
+
+// Check if a url does not have a specified header.
+func noResponseHeader(url, header string) Test {
+	return func() error {
+		resp, err := http.Get(url)
+		if err != nil {
+			return fmt.Errorf("failed to get host: %w", err)
+		}
+
+		if _, ok := resp.Header[header]; ok {
+			return fmt.Errorf("header %s does exist for page %s", url, header)
+		}
+
+		return nil
 	}
 }
 
