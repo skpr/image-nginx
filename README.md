@@ -2,6 +2,10 @@
 
 Images for applications which require Nginx (Drupal, PHP etc).
 
+## Documentation
+
+* [Static Status Codes](/docs/static_status_codes.md)
+
 ## Streams
 
 This image suite provides 2 streams for images:
