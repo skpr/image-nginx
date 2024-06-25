@@ -1,0 +1,21 @@
+name: Release to Production
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  semantic-release:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.releaseVersion.outputs.releaseVersion }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: cycjimmy/semantic-release-action@v4
+        id: semantic
+        with:
+          extra_plugins: |
+            conventional-changelog-conventionalcommits@6.1.0
+            @semantic-release/commit-analyzer@10.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
