@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-// Test which will be executed by this function.
+// Test which will be executed by this script.
 type Test func() error
 
 func main() {
@@ -18,6 +18,11 @@ func main() {
 		hasStatusCode("http://127.0.0.1:8080/tag", 200),
 		hasStatusCode("http://127.0.0.1:8080/Tag", 404),
 		hasStatusCode("http://127.0.0.1:8080/data.log", 404),
+		// Static status codes.
+		hasStatusCode("http://127.0.0.1:8080/core/CHANGELOG.txt", 403),
+		hasStatusCode("http://127.0.0.1:8080/core/MAINTAINERS.txt", 403),
+		hasStatusCode("http://127.0.0.1:8080/core/package.json", 403),
+		hasStatusCode("http://127.0.0.1:8080/core/yarn.lock", 403),
 	}
 
 	for _, test := range tests {
