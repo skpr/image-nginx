@@ -15,6 +15,10 @@ func main() {
 	tests := []Test{
 		// Tests for header: X-Robots-Tag.
 		noResponseHeader("http://127.0.0.1:8080", "X-Robots-Tag"),
+		noResponseHeader("http://127.0.0.1:8080/core/themes/stable9/css/system/components/ajax-progress.module.css?sfnmnn", "X-Robots-Tag"),
+		noResponseHeader("http://127.0.0.1:8080/core/themes/stable9/css/system/components/ajax-progress.module.css", "X-Robots-Tag"),
+		hasResponseHeader("http://127.0.0.1:8080/core/themes/stable9/css/foo", "X-Robots-Tag"),
+		hasResponseHeader("http://127.0.0.1:8080/admin", "X-Robots-Tag"),
 		hasResponseHeader("http://127.0.0.1:8080/admin/people", "X-Robots-Tag"),
 		// Blocking rules.
 		hasStatusCode("http://127.0.0.1:8080/index.PHP", 403),
