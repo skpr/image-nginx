@@ -30,6 +30,10 @@ func main() {
 		hasStatusCode("http://127.0.0.1:8080/core/MAINTAINERS.txt", 403),
 		hasStatusCode("http://127.0.0.1:8080/core/package.json", 403),
 		hasStatusCode("http://127.0.0.1:8080/core/yarn.lock", 403),
+		hasStatusCode("http://127.0.0.1:8080/modules/contrib/test/CHANGELOG.txt", 404),
+		hasStatusCode("http://127.0.0.1:8080/modules/contrib/test/LICENSE.txt", 404),
+		hasStatusCode("http://127.0.0.1:8080/modules/contrib/test/README.txt", 404),
+		hasStatusCode("http://127.0.0.1:8080/modules/contrib/test/TEST.txt", 200), // This is to ensure we are targetting file in the directory correctly.
 	}
 
 	for _, test := range tests {
