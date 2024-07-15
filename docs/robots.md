@@ -26,7 +26,7 @@ The configuration below sets the `X-Robots-Tag` header for all pages under `/adm
 ~*/admin/(.*) "noindex, nofollow";
 ```
 
-**How do I opt out?**
+## How do I opt out?
 
 Clients can opt out of this header by adding the following to their Nginx Dockerfile build:
 
