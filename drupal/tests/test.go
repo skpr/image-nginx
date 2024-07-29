@@ -26,6 +26,7 @@ func main() {
 		hasStatusCode("http://127.0.0.1:8080/Tag", 404),
 		hasStatusCode("http://127.0.0.1:8080/data.log", 404),
 		// Static status codes.
+		hasStatusCode("http://127.0.0.1:8080/core/README.md", 403),
 		hasStatusCode("http://127.0.0.1:8080/core/CHANGELOG.txt", 403),
 		hasStatusCode("http://127.0.0.1:8080/core/MAINTAINERS.txt", 403),
 		hasStatusCode("http://127.0.0.1:8080/core/package.json", 403),
@@ -33,6 +34,7 @@ func main() {
 		hasStatusCode("http://127.0.0.1:8080/modules/contrib/test/CHANGELOG.txt", 404),
 		hasStatusCode("http://127.0.0.1:8080/modules/contrib/test/LICENSE.txt", 404),
 		hasStatusCode("http://127.0.0.1:8080/modules/contrib/test/README.txt", 404),
+		hasStatusCode("http://127.0.0.1:8080/modules/contrib/test/README.md", 404),
 		hasStatusCode("http://127.0.0.1:8080/modules/contrib/test/TEST.txt", 200), // This is to ensure we are targetting file in the directory correctly.
 	}
 
