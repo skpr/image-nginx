@@ -36,11 +36,11 @@ build:
 test:
 	$(eval IMAGE=${REGISTRY_DRUPAL}:dev-${VERSION_TAG}-${ARCH})
 	# Start a stack for testing.
-	IMAGE=${IMAGE} docker-compose -f tests/docker-compose.yml up -d
+	IMAGE=${IMAGE} docker-compose -f drupal/tests/docker-compose.yml up -d
 	# Run tests.
-	docker run --rm --network=host --volume ${PWD}/tests/goss.yaml:/data/goss.yml aelsabbahy/goss goss -g /data/goss.yml validate
+	go run drupal/tests/test.go
 	# Stop testing stack.
-	IMAGE=${IMAGE} docker-compose -f tests/docker-compose.yml down
+	IMAGE=${IMAGE} docker-compose -f drupal/tests/docker-compose.yml down
 
 push:
 	docker push ${REGISTRY_BASE}:${VERSION_TAG}-${ARCH}
