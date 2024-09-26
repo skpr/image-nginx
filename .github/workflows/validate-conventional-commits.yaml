@@ -1,0 +1,33 @@
+name: Validate Conventional Commits
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validate_commits:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Node.js and npm
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20.12.2'
+
+      - name: Install conventional-changelog-lint
+        run: npm install --save-dev conventional-changelog-lint
+
+      - name: Validate commits
+        run: npx conventional-changelog-lint --from=origin/main --to=origin/${{ github.head_ref }}
+
+      - name: validate PR title
+        run: echo "${{ github.event.pull_request.title }}" | npx conventional-changelog-lint
+
+      # - name: validate PR body
+      #   run: if [[  "${{ github.event.pull_request.body }}" =~ "(.*\n)+(.*)" ]]; then exit 0; else exit 1; fi
