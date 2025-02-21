@@ -1,9 +1,15 @@
 Error Pages
 ===========
 
-These images display static error pages that include the request ID for debugging.
+These pages are static pages which are returned with a non 200 event occurs.
 
-You can customize these error pages to align with your site's design.
+The pages include:
+
+* Overview of the error
+* The request ID for tracing
+* Dark mode (because Rikki is awesome)
+
+These pages are overridable during build time and can be customized to align with your site's design.
 
 ## Configuration Files
 
