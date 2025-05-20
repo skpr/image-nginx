@@ -1,4 +1,4 @@
-FROM alpine:3.20
+FROM alpine:3.21
 RUN adduser -D -u 1000 skpr
 RUN apk --update --no-cache add util-linux ca-certificates nginx nginx-mod-http-headers-more
 
