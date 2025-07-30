@@ -20,6 +20,9 @@ func main() {
 		hasResponseHeader("http://127.0.0.1:8080/core/themes/stable9/css/foo", "X-Robots-Tag"),
 		hasResponseHeader("http://127.0.0.1:8080/admin", "X-Robots-Tag"),
 		hasResponseHeader("http://127.0.0.1:8080/admin/people", "X-Robots-Tag"),
+		// Test for header: Referrer-Policy.
+		hasResponseHeader("http://127.0.0.1:8080", "Referrer-Policy"),
+		hasResponseHeader("http://127.0.0.1:8080/index.PHP", "Referrer-Policy"),
 		// Blocking rules.
 		hasStatusCode("http://127.0.0.1:8080/index.PHP", 403),
 		hasStatusCode("http://127.0.0.1:8080/tag", 200),
