@@ -60,13 +60,23 @@ func main() {
 // Check if a url has a specified header.
 func hasResponseHeader(url, header string) Test {
 	return func() error {
-		resp, err := http.Get(url)
+		req, err := http.NewRequest("GET", url, nil)
+		if err != nil {
+			return fmt.Errorf("failed to create request: %w", err)
+		}
+
+		// Mimic CloudFront behavior by setting the CloudFront-Forwarded-Proto header.
+		req.Header.Set("CloudFront-Forwarded-Proto", "https")
+
+		client := &http.Client{}
+		resp, err := client.Do(req)
 		if err != nil {
 			return fmt.Errorf("failed to get host: %w", err)
 		}
+		defer resp.Body.Close()
 
 		if _, ok := resp.Header[header]; !ok {
-			return fmt.Errorf("header %s does not exist for page %s", url, header)
+			return fmt.Errorf("header %s does not exist for page %s", header, url)
 		}
 
 		return nil
