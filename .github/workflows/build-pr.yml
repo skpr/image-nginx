@@ -20,18 +20,21 @@ jobs:
       - name: 🐋 Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: 🏗️ Build Docker image
+      # If you will run arm64 locally, enable QEMU:
+      # - uses: docker/setup-qemu-action@v3
+
+      - name: Prepare output dir
+        run: mkdir -p out
+
+      - name: 🏗️ Build OCI tarball for tests (no HCL changes)
         uses: docker/bake-action@v6
         env:
           STREAM: ${{ env.stream }}
         with:
           targets: drupal-dev
           set: |
-            # run tests on a single arch; choose linux/amd64 for speed/stability
             drupal-dev.platforms=linux/amd64
-            # export as OCI tarball (stays local; not pushed)
             drupal-dev.output=type=oci,dest=out/drupal-dev.tar
-            # ensure the archive contains the tag your tests reference
             drupal-dev.tags=skpr/php-drupal:dev-v3-latest
 
       - name: Load image into local daemon
@@ -40,12 +43,6 @@ jobs:
       - name: Test
         run: |
           export IMAGE=skpr/php-drupal:dev-v3-latest
-
-          # Start a stack for testing.
           IMAGE=${IMAGE} docker-compose -f drupal/tests/docker-compose.yml up -d
-
-          # Run tests.
           go run drupal/tests/test.go
-
-          # Stop testing stack.
           IMAGE=${IMAGE} docker-compose -f drupal/tests/docker-compose.yml down
