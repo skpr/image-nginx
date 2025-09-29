@@ -12,8 +12,6 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
-      matrix:
-        node: [ '20', '22', '24' ]
 
     steps:
       - name: Checkout repository
@@ -27,7 +25,6 @@ jobs:
         with:
           load: true
         env:
-          NODE_VERSION: ${{ matrix.node }}
           STREAM: ${{ env.stream }}
 
       - name: Test
