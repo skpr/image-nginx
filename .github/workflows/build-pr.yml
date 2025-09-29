@@ -37,6 +37,9 @@ jobs:
       - name: Load image into local daemon
         run: docker load -i out/drupal-dev.tar
 
+      - name: Set up Docker Compose
+        uses: docker/setup-compose-action@v1
+
       - name: Test
         run: |
           export IMAGE=skpr/php-drupal:dev-v3-latest
