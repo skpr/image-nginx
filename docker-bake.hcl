@@ -7,7 +7,7 @@ variable "STREAM" {
 }
 
 variable "VERSION" {
-  default = "v3"
+  default = "v2"
 }
 
 variable "PLATFORMS" {
