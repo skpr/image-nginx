@@ -12,29 +12,33 @@ Images for applications which require Nginx (Drupal, PHP etc).
 
 This image suite provides 2 streams for images:
 
-* `latest` - A stable upstream.
-* `edge` - Recently merged changes which will be merged into `latest` as part of a release.
+* `stable` - Our production/stable upstream for projects. Use this by default.
+* `latest` - Recently merged changes which will be merged into `stable` as part of a release.
 
 ## Images
 
-**Latest**
+Images are available in the following registries:
+
+* `ghcr.io`
+* `docker.io`
+
+## Image List
+
+Below is the list of PHP images we provide.
+
+By default we recommend the following registry and stream:
 
 ```
-docker.io/skpr/nginx:v2-latest
-docker.io/skpr/nginx-php-fpm:v2-latest
-docker.io/skpr/nginx-php-fpm:dev-v2-latest
-docker.io/skpr/nginx-drupal:v2-latest
-docker.io/skpr/nginx-drupal:dev-v2-latest
+REGISTRY=docker.io
+STREAM=stable
 ```
 
-**Edge**
-
 ```
-docker.io/skpr/nginx:v2-edge
-docker.io/skpr/nginx-php-fpm:v2-edge
-docker.io/skpr/nginx-php-fpm:dev-v2-edge
-docker.io/skpr/nginx-drupal:v2-edge
-docker.io/skpr/nginx-drupal:dev-v2-edge
+REGISTRY/skpr/nginx:v2-STREAM
+REGISTRY/skpr/nginx-php-fpm:v2-STREAM
+REGISTRY/skpr/nginx-php-fpm:dev-v2-STREAM
+REGISTRY/skpr/nginx-drupal:v2-STREAM
+REGISTRY/skpr/nginx-drupal:dev-v2-STREAM
 ```
 
 ## Configuration Directory Structure.
