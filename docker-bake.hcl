@@ -43,7 +43,7 @@ target "base" {
 
   tags = [
     for r in REGISTRIES :
-    "${r}/skpr/php:${VERSION}-${STREAM}"
+    "${r}/skpr/nginx:${VERSION}-${STREAM}"
   ]
 }
 
@@ -57,7 +57,7 @@ target "php-fpm" {
 
   tags = [
     for r in REGISTRIES :
-    "${r}/skpr/php-fpm:${VERSION}-${STREAM}"
+    "${r}/skpr/nginx-php-fpm:${VERSION}-${STREAM}"
   ]
 }
 
@@ -71,7 +71,7 @@ target "php-fpm-dev" {
 
   tags = [
     for r in REGISTRIES :
-    "${r}/skpr/php-fpm:dev-${VERSION}-${STREAM}"
+    "${r}/skpr/nginx-php-fpm:dev-${VERSION}-${STREAM}"
   ]
 }
 
@@ -85,7 +85,7 @@ target "drupal" {
 
   tags = [
     for r in REGISTRIES :
-    "${r}/skpr/php-drupal:${VERSION}-${STREAM}"
+    "${r}/skpr/nginx-drupal:${VERSION}-${STREAM}"
   ]
 }
 
@@ -113,6 +113,6 @@ target "drupal-dev" {
 
   tags = [
     for r in REGISTRIES :
-    "${r}/skpr/php-drupal:dev-${VERSION}-${STREAM}"
+    "${r}/skpr/nginx-drupal:dev-${VERSION}-${STREAM}"
   ]
 }
