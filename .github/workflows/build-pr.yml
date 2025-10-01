@@ -40,6 +40,6 @@ jobs:
       - name: Test
         run: |
           export IMAGE=skpr/php-drupal:dev-v3-latest
-          IMAGE=${IMAGE} docker compose -f drupal/tests/docker-compose.yml up -d
+          docker compose -f drupal/tests/docker-compose.yml up -d
           go run drupal/tests/test.go
-          IMAGE=${IMAGE} docker compose -f drupal/tests/docker-compose.yml down
+          docker compose -f drupal/tests/docker-compose.yml down
