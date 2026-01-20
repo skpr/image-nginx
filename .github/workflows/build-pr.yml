@@ -28,6 +28,7 @@ jobs:
         env:
           STREAM: ${{ env.stream }}
         with:
+          source: .
           targets: drupal-dev
           set: |
             drupal-dev.platform=linux/amd64
