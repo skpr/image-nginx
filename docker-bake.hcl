@@ -1,7 +1,3 @@
-variable "NODE_VERSION" {
-  default = "22"
-}
-
 variable "STREAM" {
   default = "latest"
 }

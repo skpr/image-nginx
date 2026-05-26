@@ -19,7 +19,6 @@ jobs:
       matrix:
         image_ref:
           - ghcr.io/skpr/nginx:v2-latest
-          - ghcr.io/skpr/nginx:dev-v2-latest
           - ghcr.io/skpr/nginx-php-fpm:v2-latest
           - ghcr.io/skpr/nginx-php-fpm:dev-v2-latest
           - ghcr.io/skpr/nginx-drupal:v2-latest
