@@ -23,9 +23,18 @@ func main() {
 		// Test for header: Referrer-Policy.
 		hasResponseHeader("http://127.0.0.1:8080", "Referrer-Policy"),
 		hasResponseHeader("http://127.0.0.1:8080/index.PHP", "Referrer-Policy"),
-		// Test for header: Feature-Policy.
-		hasResponseHeader("http://127.0.0.1:8080", "Feature-Policy"),
-		hasResponseHeader("http://127.0.0.1:8080/index.PHP", "Feature-Policy"),
+		// Test for header: Permissions-Policy.
+		hasResponseHeader("http://127.0.0.1:8080", "Permissions-Policy"),
+		hasResponseHeader("http://127.0.0.1:8080/index.PHP", "Permissions-Policy"),
+		// Test for header: Cross-Origin-Opener-Policy.
+		hasResponseHeader("http://127.0.0.1:8080", "Cross-Origin-Opener-Policy"),
+		hasResponseHeader("http://127.0.0.1:8080/index.PHP", "Cross-Origin-Opener-Policy"),
+		// Test for header: Cross-Origin-Resource-Policy.
+		hasResponseHeader("http://127.0.0.1:8080", "Cross-Origin-Resource-Policy"),
+		hasResponseHeader("http://127.0.0.1:8080/index.PHP", "Cross-Origin-Resource-Policy"),
+		// Test for header: X-Permitted-Cross-Domain-Policies.
+		hasResponseHeader("http://127.0.0.1:8080", "X-Permitted-Cross-Domain-Policies"),
+		hasResponseHeader("http://127.0.0.1:8080/index.PHP", "X-Permitted-Cross-Domain-Policies"),
 		// Test for header: Strict-Transport-Security.
 		hasResponseHeader("http://127.0.0.1:8080", "Strict-Transport-Security"),
 		hasResponseHeader("http://127.0.0.1:8080/foo", "Strict-Transport-Security"),
