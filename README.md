@@ -109,3 +109,7 @@ COPY conf.d /etc/nginx/conf.d
 ```
 
 This adds any custom configuration in `conf.d/` to the correct location in the Nginx image.
+
+## Why did the Nginx server go to therapy?
+
+Because it had too many upstream issues!
