@@ -1,4 +1,6 @@
 FROM from_image
 
-RUN rm -f /etc/nginx/conf.d/header/x_drupal_cache.conf
-RUN rm -f /etc/nginx/conf.d/header/x_drupal_dynamic_cache.conf
+# Leave the Drupal cache headers visible for dev images. These empty overrides
+# replace the production fastcgi_hide_header directives (shell-free so they work
+# on the no-shell hardened base image).
+COPY --chown=skpr:skpr etc /etc
