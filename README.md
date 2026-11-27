@@ -2,6 +2,12 @@
 
 Images for applications which require Nginx (Drupal, PHP etc).
 
+Nginx is compiled statically (musl, with the `headers-more` module built in)
+in a multi-stage build and shipped from `scratch`. The runtime image therefore
+contains no shell or package manager. Extend it with `COPY` rather than `RUN`;
+if you need to run commands against the filesystem, do so in an earlier build
+stage (see `php-fpm/dev/Dockerfile` and `drupal/dev/Dockerfile` for examples).
+
 ## Documentation
 
 * [Static Status Codes](/docs/static_status_codes.md)
